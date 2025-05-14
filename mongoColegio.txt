@@ -1,0 +1,81 @@
+
+use colegio
+
+// 2. Insertar alumnos
+db.alumno.insertMany([
+  { nombre: "Ana Pérez", edad: 16 },
+  { nombre: "Luis Gómez", edad: 17 },
+  { nombre: "María Torres", edad: 15 }
+]);
+
+// 3. Insertar materias
+db.materia.insertMany([
+  { nombre: "Matemáticas" },
+  { nombre: "Ciencias" },
+  { nombre: "Historia" }
+]);
+
+// 4. Insertar cursos
+db.curso.insertMany([
+  { nombre: "10A" },
+  { nombre: "10B" }
+]);
+
+// 5. Obtener los _id necesarios
+const ana = db.alumno.findOne({ nombre: "Ana Pérez" });
+const luis = db.alumno.findOne({ nombre: "Luis Gómez" });
+const maria = db.alumno.findOne({ nombre: "María Torres" });
+
+const matematicas = db.materia.findOne({ nombre: "Matemáticas" });
+const ciencias = db.materia.findOne({ nombre: "Ciencias" });
+
+const curso10A = db.curso.findOne({ nombre: "10A" });
+const curso10B = db.curso.findOne({ nombre: "10B" });
+
+// 6. Insertar calificaciones
+db.calificaciones.insertMany([
+  {
+    id_alumno: ana._id,
+    id_materia: matematicas._id,
+    id_curso: curso10A._id,
+    calificacion: "alto"
+  },
+  {
+    id_alumno: luis._id,
+    id_materia: ciencias._id,
+    id_curso: curso10A._id,
+    calificacion: "superior"
+  },
+  {
+    id_alumno: maria._id,
+    id_materia: matematicas._id,
+    id_curso: curso10B._id,
+    calificacion: "bajo"
+  }
+]);
+db.calificaciones.aggregate([
+  {
+    $lookup: {
+      from: "alumno",
+      localField: "id_alumno",
+      foreignField: "_id",
+      as: "alumno"
+    }
+  },
+  {
+    $lookup: {
+      from: "materia",
+      localField: "id_materia",
+      foreignField: "_id",
+      as: "materia"
+    }
+  },
+  {
+    $lookup: {
+      from: "curso",
+      localField: "id_curso",
+      foreignField: "_id",
+      as: "curso"
+    }
+  }
+]);

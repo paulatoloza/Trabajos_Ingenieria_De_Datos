@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "68190b5ca3d31add547b25e7"
+  },
+  "nombre": "Paula Toloza",
+  "cedula": 1039456789,
+  "dirrecion": "calle 10"
+},
+{
+  "_id": {
+    "$oid": "68190e43a3d31add547b25f1"
+  },
+  "nombre": "Eli Gonzales",
+  "cedula": 123469789,
+  "direccion": "carrera 74"
+},
+{
+  "_id": {
+    "$oid": "68190e95a3d31add547b25f2"
+  },
+  "nombre": "David Casas",
+  "cedula": 1234456789,
+  "dirrecion": "Calle 9"
+}]
+
+[{
+  "_id": {
+    "$oid": "681907f8a3d31add547b25df"
+  },
+  "cantidad": 5,
+  "nombre": "mouse",
+  "precio": 50000
+},
+{
+  "_id": {
+    "$oid": "681908c8a3d31add547b25e3"
+  },
+  "nombre": "laptop",
+  "precio": 1200000,
+  "cantidad": 10
+}]
